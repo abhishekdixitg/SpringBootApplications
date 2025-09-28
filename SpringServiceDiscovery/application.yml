@@ -1,0 +1,20 @@
+server:
+  port: 8094
+
+eureka:
+  client:
+    registerWithEureka: false 
+    fetchRegistry: false
+    serviceUrl: 
+      defaultZone: http://localhost:8094/eureka/
+  server: 
+    enableSelfPreservation: false
+  instance: 
+    hostname: localhost
+  
+management: 
+  endpoints:
+    web:
+      exposure :
+        include: health,info,metrics,env
+       
