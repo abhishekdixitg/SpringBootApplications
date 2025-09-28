@@ -4,6 +4,9 @@ Demo application to show the inventory service in a microservices architecture
 
 ## Create Table
 
+This table stores information about inventory available in the system.
+
+```sql
 CREATE TABLE inventory (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     product_code VARCHAR(255) NOT NULL UNIQUE,
