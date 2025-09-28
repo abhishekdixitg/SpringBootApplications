@@ -1,24 +1,17 @@
 package com.example.SpringBootDemo.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "student")
 public class Student {
 
 	@Id
-	@Column(name = "id")
 	private String id;
-	@Column(name = "name")
+
 	private String name;
 
-	public Student(String id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
+	public Student() {
 	}
 
 	public String getId() {

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.SpringBootDemo.model.Student;
+import com.example.SpringBootDemo.service.StudentService;
 
 @RestController
 @RequestMapping("/student")
 public class SpringBootApplicationController {
 
 	Map<String, Student> studentMap = new HashMap<>();
+
+	@Autowired
+	StudentService service;
 
 	@PostMapping("/addStudent")
 	public boolean addStudent(@RequestBody Student student) {
@@ -34,7 +39,7 @@ public class SpringBootApplicationController {
 	@GetMapping("/students")
 	public Collection<Student> getStudents() {
 
-		return studentMap.values();
+		return service.findAllStudent();
 	}
 
 	@PutMapping("/update/{id}")
