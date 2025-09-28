@@ -18,8 +18,6 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void addStudent() {
 		ArrayList<Student> student = new ArrayList<Student>();
-		student.add(new Student("100101", "Shubham"));
-		student.add(new Student("20010", "Puneet"));
 
 		for (Student stud : student) {
 			studentRepository.save(stud);
