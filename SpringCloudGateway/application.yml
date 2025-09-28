@@ -1,0 +1,48 @@
+server:
+  port: 8092
+
+management: 
+  endpoints:
+    web:
+      exposure :
+        include: "*"
+
+
+eureka:
+  client:
+    registerWithEureka: true 
+    fetchRegistry: true
+    serviceUrl: 
+      defaultZone: http://localhost:8094/eureka/
+      
+  server: 
+    enableSelfPreservation: false
+  instance: 
+    hostname: localhost        
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator: 
+          enabled: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+      routes:
+      - id: product-service
+        uri: ${PRODUCT_SERVICE_URI:http://localhost:8096} 
+        predicates:
+            - Path=/products/**
+        filters:
+          - RewritePath=/products/(?<segment>.*), /${segment}
+      - id: inventory-service
+        uri: ${INVENTORY_SERVICE_URI:http://localhost:8097} 
+        predicates:
+            - Path=/inventory/**
+        filters:
+          - RewritePath=/inventory/(?<segment>.*), /${segment}

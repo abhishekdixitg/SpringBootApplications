@@ -1,0 +1,42 @@
+server:
+  port: 8096
+
+management: 
+  endpoints:
+    web:
+      exposure :
+        include: "*"
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      inventoryLookup:
+        slidingWindowSize: 10          
+        minimumNumberOfCalls: 5        
+        failureRateThreshold: 50       
+        waitDurationInOpenState: 10000 
+        permittedNumberOfCallsInHalfOpenState: 3
+eureka:
+  client:
+    registerWithEureka: true 
+    fetchRegistry: true
+    serviceUrl: 
+      defaultZone: http://localhost:8094/eureka/
+      
+  server: 
+    enableSelfPreservation: false
+  instance: 
+    hostname: localhost        
+spring:
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/bulk_operation_tool
+    username: root
+    password: aabbhhii
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa: 
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  generate-ddl: false
+  show_sql: true
+  hibernate.ddl-auto: update
