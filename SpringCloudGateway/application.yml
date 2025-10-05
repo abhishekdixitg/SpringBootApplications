@@ -39,10 +39,10 @@ spring:
         predicates:
             - Path=/products/**
         filters:
-          - RewritePath=/products/(?<segment>.*), /${segment}
+          - RewritePath=/products/(?<segment>.*), /products/${segment}
       - id: inventory-service
         uri: ${INVENTORY_SERVICE_URI:http://localhost:8097} 
         predicates:
             - Path=/inventory/**
         filters:
-          - RewritePath=/inventory/(?<segment>.*), /${segment}
+          - RewritePath=/inventory/(?<segment>.*), /inventory/${segment}

@@ -20,7 +20,7 @@ eureka:
     hostname: localhost        
 spring:
   application:
-    name: product-service
+    name: inventory-service
   datasource:
     url: jdbc:mysql://localhost:3306/bulk_operation_tool
     username: root

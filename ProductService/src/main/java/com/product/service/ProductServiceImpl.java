@@ -3,6 +3,7 @@ package com.product.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,6 +16,9 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 public class ProductServiceImpl implements ProductService {
 
 	private static final String INVENTORY_CB = "inventoryLookup";
+
+	@Value("${services.inventoryService}")
+	String inventoryService;
 
 	private final ProductRepository productRepository;
 	private final RestTemplate restTemplate;
@@ -59,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@CircuitBreaker(name = INVENTORY_CB, fallbackMethod = "getFallbackStockLevel")
 	public Boolean getProductStock(String productCode, int qty) {
-		String baseUrl = "http://localhost:8097/inventory";
+		String baseUrl = inventoryService;
 		String inventoryUrl = baseUrl + "/stock?code=" + productCode + "&qty=" + qty;
 		System.out.println("Calling Inventory Service: " + inventoryUrl);
 

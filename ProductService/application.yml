@@ -40,3 +40,6 @@ spring:
   generate-ddl: false
   show_sql: true
   hibernate.ddl-auto: update
+  
+services:
+  inventoryService: http://localhost:8092/inventory

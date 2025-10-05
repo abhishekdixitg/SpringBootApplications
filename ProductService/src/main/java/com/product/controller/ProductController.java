@@ -49,8 +49,8 @@ public class ProductController {
 
 	@GetMapping("/{productCode}/stock")
 	public ResponseEntity<Boolean> getProductStock(@PathVariable String productCode,
-			@RequestParam(defaultValue = "1") int qty) {
-		Boolean stock = productService.getProductStock(productCode, qty);
+			@RequestParam(defaultValue = "1") int quantity) {
+		Boolean stock = productService.getProductStock(productCode, quantity);
 		return ResponseEntity.ok(stock);
 	}
 
