@@ -1,0 +1,18 @@
+server:
+  port: 8098
+
+management: 
+  endpoints:
+    web:
+      exposure :
+        include: "*"
+
+jwt:
+  secret: this_is_a_very_secret_key_for_jwt_demo_2025
+spring:
+  application:
+    name: spring-security-example
+  security:
+    user:
+      name: abhishek
+      password: aabbhhii
